@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Магазин продуктов{% endblock %}</title>
+</head>
+<body>
+<header>
+    <h1>Добро пожаловать в наш магазин продуктов!</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ path('product_list') }}">Продукты</a></li>
+            <li><a href="{{ path('category_list') }}">Категории</a></li>
+            <li><a href="{{ path('cart_view') }}">Корзина</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block body %}{% endblock %}
+</main>
+
+<footer>
+    <p>© 2025 Онлайн магазин продуктов</p>
+</footer>
+</body>
+</html><

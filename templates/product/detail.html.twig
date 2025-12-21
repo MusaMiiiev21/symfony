@@ -1,9 +1,33 @@
-<!-- templates/product/detail.html.twig -->
-{% extends 'base.html.twig' %}
-{% block title %}
-    Детали продукта
-{% endblock %}
-{% block body %}
-    <h1>Детали продукта</h1>
-    <p>Детали продукта с ID: {{ id }}</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Название товара - детали</title>
+</head>
+<body>
+<div class="product-detail">
+    <h1>Название товара</h1>
+    <p>Описание товара</p>
+
+    <h2>Похожие товары</h2>
+    <ul class="similar-products">
+        <li class="similar-product">
+            <h3>Похожий продукт 1</h3>
+            <p>Описание похожего продукта 1</p>
+            <a href="/products/1">Смотреть детали</a>
+        </li>
+        <li class="similar-product">
+            <h3>Похожий продукт 2</h3>
+            <p>Описание похожего продукта 2</p>
+            <a href="/products/2">Смотреть детали</a>
+        </li>
+        <li class="similar-product">
+            <h3>Похожий продукт 3</h3>
+            <p>Описание похожего продукта 3</p>
+            <a href="/products/3">Смотреть детали</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

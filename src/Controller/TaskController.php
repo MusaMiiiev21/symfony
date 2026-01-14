@@ -21,7 +21,6 @@ $tasks = [
 ['name' => 'Задача 5', 'status' => 'В процессе', 'dueDate' => '2025-01-05', 'description' => 'Описание задачи 5', 'priority' => 'Средний'],
 ];
 
-
 return $this->render('task/list.html.twig', [
 'tasks' => $tasks
 ]);

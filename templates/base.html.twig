@@ -4,26 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Магазин продуктов{% endblock %}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/assets/css/animate.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1>Добро пожаловать в наш магазин продуктов!</h1>
-    <nav>
-        <ul>
-            <li><a href="{{ path('product_list') }}">Продукты</a></li>
-            <li><a href="{{ path('category_list') }}">Категории</a></li>
-            <li><a href="{{ path('cart_view') }}">Корзина</a></li>
-        </ul>
+
+<div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <img alt="image" class="rounded-circle" src="/assets/img/profile_small.jpg">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="block m-t-xs font-bold">David Williams</span>
+                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                        </a>
+                    </div>
+                </li>
+                <li>
+                    <a href="{{ path('product_list') }}">
+                        <i class="fa fa-spoon"></i>
+                        <span class="nav-label">Products</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('category_list') }}">
+                        <i class="fa fa-cubes"></i>
+                        <span class="nav-label">Category</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </nav>
-</header>
 
-<main>
-    {% block body %}{% endblock %}
-</main>
+    <div id="page-wrapper" class="gray-bg">
+        {% block body %}{% endblock %}
 
-<footer>
-    <p>© 2025 Онлайн магазин продуктов</p>
-</footer>
+    </div>
+</div>
+
 </body>
 </html>

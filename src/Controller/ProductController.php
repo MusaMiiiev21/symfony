@@ -1,5 +1,5 @@
 <?php
-// src/Controller/ProductController.php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,14 +14,17 @@ class ProductController extends AbstractController
         return $this->render('product/list.html.twig');
     }
 
-    #[Route('/products/{id}', name: 'product_detail')]
+    #[Route('/products/{id}', name: 'product_detail', requirements: ['id' => '\\d+'])]
     public function detail(int $id): Response
     {
+        if ($id < 1) {
+            throw $this->createNotFoundException('Invalid product id.');
+        }
 
         $product = [
             'id' => $id,
-            'name' => 'Продукт ' . $id,
-            'description' => 'Описание продукта ' . $id,
+            'name' => 'Product ' . $id,
+            'description' => 'Description for product ' . $id,
         ];
 
         $similarProducts = $this->getSimilarProducts($id);
@@ -36,21 +39,20 @@ class ProductController extends AbstractController
     {
         return [
             [
-                'id' => 1,
-                'name' => 'Похожий продукт 1',
-                'description' => 'Описание похожего продукта 1',
+                'id' => max(1, $id - 1),
+                'name' => 'Similar product ' . max(1, $id - 1),
+                'description' => 'Alternative option close to product ' . $id,
             ],
             [
-                'id' => 2,
-                'name' => 'Похожий продукт 2',
-                'description' => 'Описание похожего продукта 2',
+                'id' => $id + 1,
+                'name' => 'Similar product ' . ($id + 1),
+                'description' => 'Alternative option close to product ' . $id,
             ],
             [
-                'id' => 3,
-                'name' => 'Похожий продукт 3',
-                'description' => 'Описание похожего продукта 3',
+                'id' => $id + 2,
+                'name' => 'Similar product ' . ($id + 2),
+                'description' => 'Alternative option close to product ' . $id,
             ],
         ];
     }
 }
-

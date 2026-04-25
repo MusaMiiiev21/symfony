@@ -1,9 +1,15 @@
-<!-- templates/cart/view.html.twig -->
 {% extends 'base.html.twig' %}
 {% block title %}
     Корзина
 {% endblock %}
 {% block body %}
-    <h1>Корзина</h1>
-    <p>Содержимое вашей корзины.</p>
+    <div class="wrapper wrapper-content">
+        <h1>Корзина</h1>
+        <p>Пока это демо-корзина без хранения, но быстрые действия уже работают.</p>
+
+        <div class="btn-group" role="group" aria-label="Cart quick actions">
+            <a href="{{ path('cart_add', {'productId': 1}) }}" class="btn btn-primary">Добавить товар #1</a>
+            <a href="{{ path('cart_remove', {'productId': 1}) }}" class="btn btn-default">Удалить товар #1</a>
+        </div>
+    </div>
 {% endblock %}

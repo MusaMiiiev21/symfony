@@ -17,12 +17,16 @@ class CartController extends AbstractController
     #[Route('/cart/add/{productId}', name: 'cart_add', requirements: ['productId' => '\\d+'])]
     public function add(int $productId): Response
     {
-        return $this->render('cart/add.html.twig', ['productId' => $productId]);
+        $this->addFlash('success', sprintf('Товар #%d добавлен в корзину.', $productId));
+
+        return $this->redirectToRoute('cart_view');
     }
 
     #[Route('/cart/remove/{productId}', name: 'cart_remove', requirements: ['productId' => '\\d+'])]
     public function remove(int $productId): Response
     {
-        return $this->render('cart/remove.html.twig', ['productId' => $productId]);
+        $this->addFlash('warning', sprintf('Товар #%d удален из корзины.', $productId));
+
+        return $this->redirectToRoute('cart_view');
     }
 }

@@ -39,11 +39,26 @@
                         <span class="nav-label">Category</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ path('cart_view') }}">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span class="nav-label">Cart</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
 
     <div id="page-wrapper" class="gray-bg">
+        <div class="wrapper wrapper-content">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label == 'warning' ? 'warning' : 'success' }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
         {% block body %}{% endblock %}
 
     </div>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Магазин продуктов{% endblock %}</title>
+    <title>{% block title %}Product Store{% endblock %}</title>
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -22,8 +22,8 @@
                     <div class="dropdown profile-element">
                         <img alt="image" class="rounded-circle" src="/assets/img/profile_small.jpg">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="block m-t-xs font-bold">David Williams</span>
-                            <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
+                            <span class="block m-t-xs font-bold">Demo User</span>
+                            <span class="text-muted text-xs block">Store Panel <b class="caret"></b></span>
                         </a>
                     </div>
                 </li>
@@ -43,6 +43,7 @@
                     <a href="{{ path('cart_view') }}">
                         <i class="fa fa-shopping-cart"></i>
                         <span class="nav-label">Cart</span>
+                        <span class="label label-primary pull-right">{{ app.session.get('cart_count', 0) }}</span>
                     </a>
                 </li>
             </ul>
@@ -60,7 +61,6 @@
             {% endfor %}
         </div>
         {% block body %}{% endblock %}
-
     </div>
 </div>
 

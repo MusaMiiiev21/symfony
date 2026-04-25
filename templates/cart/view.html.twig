@@ -1,15 +1,41 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}
-    Корзина
+    Cart
 {% endblock %}
+
 {% block body %}
     <div class="wrapper wrapper-content">
-        <h1>Корзина</h1>
-        <p>Пока это демо-корзина без хранения, но быстрые действия уже работают.</p>
+        <h1>Cart</h1>
+        <p>Total items: <strong>{{ totalItems }}</strong></p>
 
-        <div class="btn-group" role="group" aria-label="Cart quick actions">
-            <a href="{{ path('cart_add', {'productId': 1}) }}" class="btn btn-primary">Добавить товар #1</a>
-            <a href="{{ path('cart_remove', {'productId': 1}) }}" class="btn btn-default">Удалить товар #1</a>
-        </div>
+        {% if items is not empty %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Quantity</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for productId, qty in items %}
+                        <tr>
+                            <td>#{{ productId }}</td>
+                            <td>{{ qty }}</td>
+                            <td>
+                                <a class="btn btn-xs btn-primary" href="{{ path('cart_add', {'productId': productId}) }}">+</a>
+                                <a class="btn btn-xs btn-default" href="{{ path('cart_remove', {'productId': productId}) }}">-</a>
+                                <a class="btn btn-xs btn-info" href="{{ path('product_detail', {'id': productId}) }}">View</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Your cart is empty. Add a product from the catalog.</p>
+        {% endif %}
+
+        <a href="{{ path('product_list') }}" class="btn btn-primary">Go to products</a>
     </div>
 {% endblock %}

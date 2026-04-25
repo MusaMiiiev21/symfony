@@ -11,7 +11,9 @@ class ProductController extends AbstractController
     #[Route('/products', name: 'product_list')]
     public function list(): Response
     {
-        return $this->render('product/list.html.twig');
+        return $this->render('product/list.html.twig', [
+            'products' => $this->getDemoProducts(),
+        ]);
     }
 
     #[Route('/products/{id}', name: 'product_detail', requirements: ['id' => '\\d+'])]
@@ -27,12 +29,21 @@ class ProductController extends AbstractController
             'description' => 'Description for product ' . $id,
         ];
 
-        $similarProducts = $this->getSimilarProducts($id);
-
         return $this->render('product/detail.html.twig', [
             'product' => $product,
-            'similarProducts' => $similarProducts,
+            'similarProducts' => $this->getSimilarProducts($id),
         ]);
+    }
+
+    private function getDemoProducts(): array
+    {
+        return [
+            ['id' => 1, 'name' => 'Product 1', 'description' => 'Description for product 1'],
+            ['id' => 2, 'name' => 'Product 2', 'description' => 'Description for product 2'],
+            ['id' => 3, 'name' => 'Product 3', 'description' => 'Description for product 3'],
+            ['id' => 4, 'name' => 'Product 4', 'description' => 'Description for product 4'],
+            ['id' => 5, 'name' => 'Product 5', 'description' => 'Description for product 5'],
+        ];
     }
 
     private function getSimilarProducts(int $id): array

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper wrapper-content">
+        <div class="row">
+            <div class="col-lg-10">
+                <h1>Home page</h1>
+                <p>Embedded controller block with similar users:</p>
+                {{ render(controller(similarUsersController ~ '::list')) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

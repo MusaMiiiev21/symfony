@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Similar users
+    </div>
+    <div class="panel-body">
+        <ul class="list-unstyled">
+            {% for user in users %}
+                <li>
+                    <strong>#{{ user.id }}</strong> {{ user.name }} ({{ user.tag }})
+                </li>
+            {% else %}
+                <li>No similar users found.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

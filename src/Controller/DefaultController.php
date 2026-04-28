@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 
 namespace App\Controller;
 
@@ -11,6 +13,8 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'default_index')]
     public function index(): Response
     {
-        return $this->redirectToRoute('product_list');
+        return $this->render('home/index.html.twig', [
+            'similarUsersController' => SimilarUsersController::class,
+        ]);
     }
 }

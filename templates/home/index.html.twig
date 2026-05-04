@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
 {% block title %}
     Home
@@ -6,10 +6,27 @@
 
 {% block body %}
     <div class="wrapper wrapper-content">
+        <h1>Dashboard</h1>
+        <p>Choose a list and open detail pages from records.</p>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="ibox"><div class="ibox-content"><h3>Products</h3><a class="btn btn-primary btn-sm" href="{{ path('product_list') }}">Open list</a></div></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox"><div class="ibox-content"><h3>Categories</h3><a class="btn btn-primary btn-sm" href="{{ path('category_list') }}">Open list</a></div></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox"><div class="ibox-content"><h3>Tasks</h3><a class="btn btn-primary btn-sm" href="{{ path('tasks') }}">Open list</a></div></div>
+            </div>
+            <div class="col-lg-4">
+                <div class="ibox"><div class="ibox-content"><h3>Users</h3><a class="btn btn-primary btn-sm" href="{{ path('user_list') }}">Open list</a></div></div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-lg-10">
-                <h1>Home page</h1>
-                <p>Embedded controller block with similar users:</p>
+                <h3>Embedded block</h3>
                 {{ render(controller(similarUsersController ~ '::list')) }}
             </div>
         </div>

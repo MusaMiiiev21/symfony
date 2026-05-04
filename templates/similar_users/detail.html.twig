@@ -1,0 +1,14 @@
+﻿{% extends 'base.html.twig' %}
+
+{% block title %}
+    User Details
+{% endblock %}
+
+{% block body %}
+    <div class="wrapper wrapper-content">
+        <h1>{{ user.name }}</h1>
+        <p><strong>ID:</strong> {{ user.id }}</p>
+        <p><strong>Role:</strong> {{ user.tag }}</p>
+        <a href="{{ path('user_list') }}" class="btn btn-default">Back to list</a>
+    </div>
+{% endblock %}

@@ -1,24 +1,26 @@
 ﻿{% extends 'base.html.twig' %}
+
 {% block title %}
-    Category List
+    Users
 {% endblock %}
+
 {% block body %}
     <div class="wrapper wrapper-content">
-        <h1>Categories</h1>
+        <h1>Users</h1>
         <div class="row">
-            {% for category in categories %}
+            {% for user in users %}
                 <div class="col-lg-4">
                     <div class="ibox">
                         <div class="ibox-content">
-                            <h3>{{ category.name }}</h3>
-                            <p>{{ category.description }}</p>
-                            <a href="{{ path('category_detail', {'id': category.id}) }}" class="btn btn-xs btn-info">Details</a>
+                            <h3>{{ user.name }}</h3>
+                            <p>Role: {{ user.tag }}</p>
+                            <a href="{{ path('user_detail', {'id': user.id}) }}" class="btn btn-xs btn-info">Details</a>
                         </div>
                     </div>
                 </div>
             {% else %}
                 <div class="col-lg-12">
-                    <p>No categories found.</p>
+                    <p>No users found.</p>
                 </div>
             {% endfor %}
         </div>

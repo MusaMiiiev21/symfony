@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+﻿<div class="panel panel-default">
     <div class="panel-heading">
         Similar users
     </div>
@@ -6,7 +6,9 @@
         <ul class="list-unstyled">
             {% for user in users %}
                 <li>
-                    <strong>#{{ user.id }}</strong> {{ user.name }} ({{ user.tag }})
+                    <a href="{{ path('user_detail', {'id': user.id}) }}">
+                        <strong>#{{ user.id }}</strong> {{ user.name }} ({{ user.tag }})
+                    </a>
                 </li>
             {% else %}
                 <li>No similar users found.</li>

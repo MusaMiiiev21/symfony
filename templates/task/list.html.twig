@@ -1,22 +1,19 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
-{% block title %}Task Tracker{% endblock %}
+{% block title %}Task List{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <h1 class="mb-4">Список задач</h1>
-
-        <a href="#" class="btn btn-primary mb-3">Создать новую задачу</a>
+    <div class="wrapper wrapper-content">
+        <h1>Tasks</h1>
 
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Задача</th>
-                <th>Статус</th>
-                <th>Срок выполнения</th>
-                <th>Описание</th>
-                <th>Приоритет</th>
-                <th>Действия</th>
+                <th>Task</th>
+                <th>Status</th>
+                <th>Due Date</th>
+                <th>Priority</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -25,16 +22,14 @@
                     <td>{{ task.name }}</td>
                     <td>{{ task.status }}</td>
                     <td>{{ task.dueDate }}</td>
-                    <td>{{ task.description }}</td>
                     <td>{{ task.priority }}</td>
                     <td>
-                        <a href="#" class="btn btn-warning btn-sm">Редактировать</a>
-                        <a href="#" class="btn btn-danger btn-sm">Удалить</a>
+                        <a href="{{ path('task_detail', {'id': task.id}) }}" class="btn btn-info btn-sm">Details</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="6" class="text-center">Задач пока нет</td>
+                    <td colspan="5" class="text-center">No tasks yet.</td>
                 </tr>
             {% endfor %}
             </tbody>

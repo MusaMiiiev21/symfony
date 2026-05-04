@@ -21,15 +21,17 @@ class ProductController extends AbstractController
     #[Route('/products/{id}', name: 'product_detail', requirements: ['id' => '\\d+'])]
     public function detail(int $id): Response
     {
-        if ($id < 1) {
-            throw $this->createNotFoundException('Invalid product id.');
+        $product = null;
+        foreach ($this->getDemoProducts() as $item) {
+            if ($item['id'] === $id) {
+                $product = $item;
+                break;
+            }
         }
 
-        $product = [
-            'id' => $id,
-            'name' => 'Product ' . $id,
-            'description' => 'Description for product ' . $id,
-        ];
+        if ($product === null) {
+            throw $this->createNotFoundException('Product not found.');
+        }
 
         return $this->render('product/detail.html.twig', [
             'product' => $product,

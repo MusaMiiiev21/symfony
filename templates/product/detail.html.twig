@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 
 {% block title %}
     {{ product.name|default('Product details') }}
@@ -11,15 +11,14 @@
                 <h1>{{ product.name }}</h1>
                 <p>{{ product.description }}</p>
                 <p><strong>ID:</strong> {{ product.id }}</p>
-                <a href="{{ path('cart_add', {'productId': product.id}) }}" class="btn btn-primary">
-                    Добавить в корзину
-                </a>
+                <a href="{{ path('cart_add', {'productId': product.id}) }}" class="btn btn-primary btn-sm">Add to cart</a>
+                <a href="{{ path('product_list') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>
         </div>
 
         <div class="row m-t-lg">
             <div class="col-lg-8">
-                <h2>Похожие товары</h2>
+                <h2>Similar products</h2>
                 <ul>
                     {% for item in similarProducts %}
                         <li>
@@ -27,7 +26,7 @@
                             <div>{{ item.description }}</div>
                         </li>
                     {% else %}
-                        <li>Похожие товары не найдены.</li>
+                        <li>No similar products found.</li>
                     {% endfor %}
                 </ul>
             </div>

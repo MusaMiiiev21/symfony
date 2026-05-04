@@ -1,9 +1,12 @@
-<!-- templates/category/detail.html.twig -->
-{% extends 'base.html.twig' %}
+﻿{% extends 'base.html.twig' %}
 {% block title %}
-    Детали категории
+    Category Details
 {% endblock %}
 {% block body %}
-    <h1>Детали категории</h1>
-    <p>Детали категории с ID: {{ id }}</p>
+    <div class="wrapper wrapper-content">
+        <h1>{{ category.name }}</h1>
+        <p>{{ category.description }}</p>
+        <p><strong>ID:</strong> {{ category.id }}</p>
+        <a href="{{ path('category_list') }}" class="btn btn-default">Back to list</a>
+    </div>
 {% endblock %}

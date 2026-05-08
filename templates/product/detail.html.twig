@@ -1,4 +1,4 @@
-﻿{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}
     {{ product.name|default('Product details') }}
@@ -11,6 +11,14 @@
                 <h1>{{ product.name }}</h1>
                 <p>{{ product.description }}</p>
                 <p><strong>ID:</strong> {{ product.id }}</p>
+                <p>
+                    <strong>Category (Many-to-One):</strong>
+                    {% if category %}
+                        <a href="{{ path('category_detail', {'id': category.id}) }}">{{ category.name }}</a>
+                    {% else %}
+                        Not set
+                    {% endif %}
+                </p>
                 <a href="{{ path('cart_add', {'productId': product.id}) }}" class="btn btn-primary btn-sm">Add to cart</a>
                 <a href="{{ path('product_list') }}" class="btn btn-default btn-sm">Back to list</a>
             </div>

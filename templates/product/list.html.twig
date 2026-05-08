@@ -16,6 +16,14 @@
                         <div class="ibox-content">
                             <h3>{{ product.name }}</h3>
                             <p>{{ product.description }}</p>
+                            <p>
+                                <strong>Category:</strong>
+                                {% if product.category %}
+                                    <a href="{{ path('category_detail', {'id': product.category.id}) }}">{{ product.category.name }}</a>
+                                {% else %}
+                                    Not set
+                                {% endif %}
+                            </p>
                             <a href="{{ path('product_detail', {'id': product.id}) }}" class="btn btn-xs btn-info">Details</a>
                             <a href="{{ path('cart_add', {'productId': product.id}) }}" class="btn btn-xs btn-primary">Add to cart</a>
                         </div>

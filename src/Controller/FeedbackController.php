@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\FeedbackRequest;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,13 +12,17 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class FeedbackController extends AbstractController
 {
+    public function __construct(private readonly EntityManagerInterface $entityManager)
+    {
+    }
+
     #[Route('/feedback', name: 'feedback_form', methods: ['GET', 'POST'])]
     public function index(Request $request): Response
     {
         $departments = [
-            'sales' => 'Отдел продаж',
-            'tech' => 'Тех.поддержка',
-            'support' => 'Служба поддержки',
+            'sales' => 'Sales department',
+            'tech' => 'Technical support',
+            'support' => 'Customer support',
         ];
 
         $formData = [
@@ -40,26 +46,37 @@ class FeedbackController extends AbstractController
             ];
 
             if ($formData['name'] === '') {
-                $errors['name'] = 'Укажите имя пользователя.';
+                $errors['name'] = 'Please enter your name.';
             }
             if ($formData['phone'] === '') {
-                $errors['phone'] = 'Укажите телефон.';
+                $errors['phone'] = 'Please enter your phone.';
             }
             if ($formData['email'] === '' || !filter_var($formData['email'], FILTER_VALIDATE_EMAIL)) {
-                $errors['email'] = 'Укажите корректную почту.';
+                $errors['email'] = 'Please enter a valid email.';
             }
             if (!in_array($formData['gender'], ['male', 'female'], true)) {
-                $errors['gender'] = 'Выберите пол.';
+                $errors['gender'] = 'Please select gender.';
             }
             if (!array_key_exists($formData['department'], $departments)) {
-                $errors['department'] = 'Выберите тему сообщения.';
+                $errors['department'] = 'Please select department.';
             }
             if ($formData['message'] === '') {
-                $errors['message'] = 'Введите текст сообщения.';
+                $errors['message'] = 'Please enter your message.';
             }
 
             if ($errors === []) {
-                $this->addFlash('success', 'Сообщение отправлено. Спасибо за обратную связь!');
+                $feedbackRequest = (new FeedbackRequest())
+                    ->setName($formData['name'])
+                    ->setPhone($formData['phone'])
+                    ->setEmail($formData['email'])
+                    ->setGender($formData['gender'])
+                    ->setDepartment($formData['department'])
+                    ->setMessage($formData['message']);
+
+                $this->entityManager->persist($feedbackRequest);
+                $this->entityManager->flush();
+
+                $this->addFlash('success', 'Feedback has been sent successfully.');
 
                 return $this->redirectToRoute('feedback_form');
             }

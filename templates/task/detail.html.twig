@@ -6,7 +6,7 @@
     <div class="wrapper wrapper-content">
         <h1>{{ task.name }}</h1>
         <p><strong>Status:</strong> {{ task.status }}</p>
-        <p><strong>Due Date:</strong> {{ task.dueDate }}</p>
+        <p><strong>Due Date:</strong> {{ task.dueDate|date('Y-m-d') }}</p>
         <p><strong>Priority:</strong> {{ task.priority }}</p>
         <p>{{ task.description }}</p>
         <a href="{{ path('tasks') }}" class="btn btn-default">Back to list</a>

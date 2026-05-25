@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ task.name }}</td>
                     <td>{{ task.status }}</td>
-                    <td>{{ task.dueDate }}</td>
+                    <td>{{ task.dueDate|date('Y-m-d') }}</td>
                     <td>{{ task.priority }}</td>
                     <td>
                         <a href="{{ path('task_detail', {'id': task.id}) }}" class="btn btn-info btn-sm">Details</a>
